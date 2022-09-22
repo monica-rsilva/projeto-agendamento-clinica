@@ -20,6 +20,11 @@ public class AppClinica {
 		PlanoDeSaude plano = new PlanoDeSaude();
 		plano.setOperadora("Unimed");
 		plano.setTipoDoPlano("Prata");
+		
+		
+//		Criando o objeto já passando o nome da operadora 	
+		PlanoDeSaude plano3 = new PlanoDeSaude("Amil");
+		
 
 //		Criando um endereço 
 

@@ -7,6 +7,21 @@ public class PlanoDeSaude {
 	private String operadora;
 	private String tipoDoPlano;
 
+	//construtores da classe 
+	//sempre público, não tem retorno, e terá o nome da classe -> chamado construtor padrão ou default 
+	public PlanoDeSaude(String operadora) {
+		this.operadora = operadora;
+	}
+	
+	public PlanoDeSaude(String operadora, String tipoDoPlano) {
+		this.operadora = operadora;
+		this.tipoDoPlano = tipoDoPlano;
+	}
+	
+	public PlanoDeSaude() {
+		
+	}
+	
 	// Métodos de acesso
 	public void setOperadora(String operadora) {
 		// this(este) o atributo(operadora) desta classe recebe a operadora que está
