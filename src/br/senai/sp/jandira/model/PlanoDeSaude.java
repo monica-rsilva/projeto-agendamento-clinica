@@ -4,6 +4,8 @@ public class PlanoDeSaude {
 
 	// As variáveis colocadas diretamente na classe são atributos da/o
 	// classe/objeto.
+	private static int contador = 100;
+	private Integer codigo;
 	private String operadora;
 	private String tipoDoPlano;
 
@@ -11,18 +13,30 @@ public class PlanoDeSaude {
 	//sempre público, não tem retorno, e terá o nome da classe -> chamado construtor padrão ou default 
 	public PlanoDeSaude(String operadora) {
 		this.operadora = operadora;
+		atualizarCodigo();
 	}
 	
 	public PlanoDeSaude(String operadora, String tipoDoPlano) {
 		this.operadora = operadora;
 		this.tipoDoPlano = tipoDoPlano;
+		atualizarCodigo();
 	}
 	
 	public PlanoDeSaude() {
-		
+		atualizarCodigo();
+	}
+	
+	private void atualizarCodigo() {
+		this.codigo = contador;
+		contador++;
 	}
 	
 	// Métodos de acesso
+	
+	public Integer getCodigo() {
+		return codigo;
+	}
+	
 	public void setOperadora(String operadora) {
 		// this(este) o atributo(operadora) desta classe recebe a operadora que está
 		// vindo lá de fora.
@@ -45,4 +59,10 @@ public class PlanoDeSaude {
 	public String getDadosDoPlano() {
 		return this.operadora + ", " + this.tipoDoPlano;
 	}
+	
+	public static int getContador() {
+		return contador;
+	}
+	
+	
 }

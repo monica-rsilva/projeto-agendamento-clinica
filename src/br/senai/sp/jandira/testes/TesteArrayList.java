@@ -87,9 +87,9 @@ public class TesteArrayList {
 		
 		// Camada de dados 
 		// DAO - Data Access OBject 
+		//MODEL---DAO  
 		
-		//MODEL---DAO  Persistência
-		//CRUD - create,read,update,delete
+		//Persistência -> CRUD - create,read,update,delete
 		
 		
 //		PlanoDeSaudeDAO dao = new PlanoDeSaudeDAO();
