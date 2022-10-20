@@ -137,6 +137,9 @@ public class PanelPlanosDeSaude extends javax.swing.JPanel {
                 planoDeSaude);
         
         dialogPlanosDeSaude.setVisible(true);
+        
+        criarTabelaPlanosDeSaude();
+        
     }
 
     private void excluir() {

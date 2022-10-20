@@ -76,7 +76,7 @@ public class TesteArrayList {
 			System.out.printf("%s --> %s\n", e.getNome(), e.getDescricao());
 		}
 		
-		System.out.println(Especialidade.getQuantidade());
+		System.out.println(Especialidade.getContador());
 //		System.out.println(especialidade2.getQuantidade());
 //		System.out.println(especialidade3.getQuantidade());
 		

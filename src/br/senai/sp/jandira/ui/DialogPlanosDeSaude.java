@@ -165,16 +165,21 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     private void atualizar() {
+        
         planoDeSaude.setOperadora(textNomeDaOperadora.getText());
         planoDeSaude.setTipoDoPlano(textTipoDoPlano.getText());
-        PlanoDeSaudeDAO.atualizar(planoDeSaude);
-        JOptionPane.showMessageDialog(
+        
+        if(validarCadastro()){
+            PlanoDeSaudeDAO.atualizar(planoDeSaude);
+            
+            JOptionPane.showMessageDialog(
                 null, 
                 "Plano de Saúde atualizado com sucesso!", 
                 "Plano de Saúde", 
                 JOptionPane.INFORMATION_MESSAGE);
         
         dispose();
+        } 
     }
 
     private void gravar() {
@@ -197,7 +202,9 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
     }
 
     private boolean validarCadastro() {
+        
         if (textNomeDaOperadora.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(
                     this,
                     "Por favor, preencha o campo Nome da Operadora!",
@@ -208,7 +215,9 @@ public class DialogPlanosDeSaude extends javax.swing.JDialog {
 
             return false;
         }
+        
         if (textTipoDoPlano.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(
                     this,
                     "Por favor, preencha o campo Tipo da Operadora!",

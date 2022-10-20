@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.testes;
 
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 
@@ -101,6 +102,10 @@ public class TesteDAO {
         
         int i = PlanoDeSaudeDAO.listarTodos().indexOf(plano2);
         System.out.println(i);
+        
+//        int a = EspecialidadeDAO.listarTodos().indexOf(esp2);
+//        System.out.println(b);
+        
         
         
 //		_______________________________________________________________________________
