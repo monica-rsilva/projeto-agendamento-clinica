@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -9,12 +10,14 @@ public class HomeFrame extends javax.swing.JFrame {
     public HomeFrame() {
         initComponents();
         PlanoDeSaudeDAO.criarPlanosDeSaudeTeste();
+        EspecialidadeDAO.especialidadeTeste();
         initPanels();
         
     }
     
 //    Atributos da classe
     PanelPlanosDeSaude panelPlanosDeSaude;
+    PanelEspecialidade panelEspecialidade;
     
 //    Constantes da classe 
     private final int POSICAO_X = 10;
@@ -39,7 +42,7 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonPacientes = new javax.swing.JButton();
         buttonMedicos = new javax.swing.JButton();
         buttonEspecialidades = new javax.swing.JButton();
-        ButtonPlanosDeSaude = new javax.swing.JButton();
+        buttonPlanosDeSaude = new javax.swing.JButton();
         panelHome = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -108,19 +111,24 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonEspecialidades.setBackground(java.awt.SystemColor.activeCaption);
         buttonEspecialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/especialista.png"))); // NOI18N
         buttonEspecialidades.setToolTipText("Especialidades");
+        buttonEspecialidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEspecialidadesActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonEspecialidades);
         buttonEspecialidades.setBounds(410, 70, 90, 50);
 
-        ButtonPlanosDeSaude.setBackground(java.awt.SystemColor.activeCaption);
-        ButtonPlanosDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/plano-de-saude.png"))); // NOI18N
-        ButtonPlanosDeSaude.setToolTipText("Planos de Saúde");
-        ButtonPlanosDeSaude.addActionListener(new java.awt.event.ActionListener() {
+        buttonPlanosDeSaude.setBackground(java.awt.SystemColor.activeCaption);
+        buttonPlanosDeSaude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/plano-de-saude.png"))); // NOI18N
+        buttonPlanosDeSaude.setToolTipText("Planos de Saúde");
+        buttonPlanosDeSaude.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonPlanosDeSaudeActionPerformed(evt);
+                buttonPlanosDeSaudeActionPerformed(evt);
             }
         });
-        getContentPane().add(ButtonPlanosDeSaude);
-        ButtonPlanosDeSaude.setBounds(510, 70, 90, 50);
+        getContentPane().add(buttonPlanosDeSaude);
+        buttonPlanosDeSaude.setBounds(510, 70, 90, 50);
 
         panelHome.setBackground(java.awt.SystemColor.activeCaption);
         panelHome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(153, 0, 0))); // NOI18N
@@ -181,31 +189,43 @@ public class HomeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonPacientesActionPerformed
 
-    private void ButtonPlanosDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonPlanosDeSaudeActionPerformed
+    private void buttonPlanosDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanosDeSaudeActionPerformed
 //        JOptionPane.showMessageDialog(this, "teste");
         panelHome.setVisible(false);
         panelPlanosDeSaude.setVisible(true);
-        ButtonPlanosDeSaude.setBackground(new java.awt.Color(72, 135, 195));
+        buttonPlanosDeSaude.setBackground(new java.awt.Color(72, 135, 195));
         buttonHome.setBackground(java.awt.SystemColor.activeCaption);
+        buttonEspecialidades.setBackground(java.awt.SystemColor.activeCaption);
         
-    }//GEN-LAST:event_ButtonPlanosDeSaudeActionPerformed
+    }//GEN-LAST:event_buttonPlanosDeSaudeActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
          panelHome.setVisible(true);
          panelPlanosDeSaude.setVisible(false);
          buttonHome.setBackground(new java.awt.Color(72, 135, 195));
-         ButtonPlanosDeSaude.setBackground(java.awt.SystemColor.activeCaption);
+         buttonPlanosDeSaude.setBackground(java.awt.SystemColor.activeCaption);
+         buttonEspecialidades.setBackground(java.awt.SystemColor.activeCaption);
     }//GEN-LAST:event_buttonHomeActionPerformed
+
+    private void buttonEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidadesActionPerformed
+        panelHome.setVisible(false);
+        panelPlanosDeSaude.setVisible(false);
+        panelEspecialidade.setVisible(true);
+        buttonEspecialidades.setBackground(new java.awt.Color(72, 135, 195));
+        buttonPlanosDeSaude.setBackground(java.awt.SystemColor.activeCaption);
+        buttonHome.setBackground(java.awt.SystemColor.activeCaption);
+        
+    }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonPlanosDeSaude;
     private javax.swing.JButton buttonAgenda;
     private javax.swing.JButton buttonEspecialidades;
     private javax.swing.JButton buttonHome;
     private javax.swing.JButton buttonMedicos;
     private javax.swing.JButton buttonPacientes;
+    private javax.swing.JButton buttonPlanosDeSaude;
     private javax.swing.JButton buttonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -224,6 +244,11 @@ public class HomeFrame extends javax.swing.JFrame {
         panelPlanosDeSaude.setBounds(POSICAO_X, POSICAO_Y, LARGURA, ALTURA);
         getContentPane().add(panelPlanosDeSaude);
         panelPlanosDeSaude.setVisible(false);
+        
+        panelEspecialidade = new PanelEspecialidade();
+        panelEspecialidade.setBounds(POSICAO_X, POSICAO_Y, LARGURA, ALTURA);
+        getContentPane().add(panelEspecialidade);
+        panelEspecialidade.setVisible(false);
         
     }   
 }

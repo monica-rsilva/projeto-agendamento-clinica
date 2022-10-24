@@ -28,11 +28,11 @@ public class PanelEspecialidade extends javax.swing.JPanel {
         buttonAdicionarEspecialidade = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaption);
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setPreferredSize(new java.awt.Dimension(740, 390));
         setLayout(null);
 
-        jScrollPane1.setColumnHeader(null);
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(452, 402));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 80));
 
         tableEspecialidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,8 +96,8 @@ public class PanelEspecialidade extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(
                 this,
-                "Por favor, selecione o plano que você deseja excluir!",
-                "Plano de Saúde",
+                "Por favor, selecione a especialidade que você deseja excluir!",
+                "Especialidade",
                 JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonDeletarEspecialidadeActionPerformed
@@ -111,7 +111,7 @@ public class PanelEspecialidade extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(
                 this,
-                "Por favor, selecione um Plano de Saúde para editar",
+                "Por favor, selecione uma especialidade para editar",
                 "Planos de Saúde",
                     JOptionPane.WARNING_MESSAGE);
         }
@@ -119,12 +119,12 @@ public class PanelEspecialidade extends javax.swing.JPanel {
 
     private void buttonAdicionarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarEspecialidadeActionPerformed
 
-        DialogPlanosDeSaude dialogPlanoDeSaude = new DialogPlanosDeSaude(
+        DialogEspecialidades dialogEspecialidade = new DialogEspecialidades(
             null,
             true,
             TipoOperacao.ADICIONAR,
             null);
-        dialogPlanoDeSaude.setVisible(true);
+        dialogEspecialidade.setVisible(true);
 
         criarTabelaEspecialidades();
     }//GEN-LAST:event_buttonAdicionarEspecialidadeActionPerformed
@@ -133,13 +133,13 @@ public class PanelEspecialidade extends javax.swing.JPanel {
         
         Especialidade especialidade = EspecialidadeDAO.getEspecialidade(getCodigo());
         
-        DialogEspecialidade dialogPlanosDeSaude = new DialogEspecialidade(
+        DialogEspecialidades dialogEspecialidade = new DialogEspecialidades(
                 null,
                 true,
                 TipoOperacao.EDITAR,
                 especialidade);
         
-        dialogPlanosDeSaude.setVisible(true);
+        dialogEspecialidade.setVisible(true);
         
         criarTabelaEspecialidades();
         
