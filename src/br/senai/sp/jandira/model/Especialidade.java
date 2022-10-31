@@ -57,8 +57,9 @@ public class Especialidade {
     public static int getContador() {
         return contador;
     }
+    
+    public String getEspecialidadeSeparadoPorPontoEVirgula(){
+            return this.codigo + ";" + this.nome + ";" + this.descricao; 
+    }
 
-//	public static void setQuantidade() {
-//		quantidade++;
-//	}
 }

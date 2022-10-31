@@ -64,5 +64,7 @@ public class PlanoDeSaude {
 		return contador;
 	}
 	
-	
+	public String getPlanoDeSaudeSeparadoPorPontoEVirgula(){
+            return this.codigo + ";" + this.operadora + ";" + this.tipoDoPlano; 
+        }
 }
