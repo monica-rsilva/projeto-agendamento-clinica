@@ -1,55 +1,44 @@
 package br.senai.sp.jandira.model;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class Medico {
+public class Medico extends Pessoa {
 
-	private String nome;
-	private LocalDate dataNasciemnto;
-	private String sexo;
-	private Especialidade[] especialidade;
-	private String crm;
+    private String crm;
+    private ArrayList<Especialidade> especialidades;
+    private Integer codigo;
+    private static int contador = 100;
 
-	public String getNome() {
-		return nome;
-	}
+    public ArrayList<Especialidade> getEspecialidade() {
+        return especialidades;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setEspecialidade(ArrayList<Especialidade> especialidade) {
+        this.especialidades = especialidade;
+    }
 
-	public LocalDate getDataNasciemnto() {
-		return dataNasciemnto;
-	}
+    public String getCrm() {
+        return crm;
+    }
 
-	public void setDataNasciemnto(LocalDate dataNasciemnto) {
-		this.dataNasciemnto = dataNasciemnto;
-	}
+    public void setCrm(String crm) {
+        this.crm = crm;
+    }
 
-	public String getSexo() {
-		return sexo;
-	}
+    public static int getContador() {
+        return contador;
+    }
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
+//    private void atualizarCodigo() {
+//        contador++;
+//        this.codigo = contador;
+//    }
+    public Integer getCodigo() {
+        return codigo;
+    }
 
-	public Especialidade[] getEspecialidade() {
-		return especialidade;
-	}
-
-	public void setEspecialidade(Especialidade[] especialidade) {
-		this.especialidade = especialidade;
-	}
-
-	public String getCrm() {
-		return crm;
-	}
-
-	public void setCrm(String crm) {
-		this.crm = crm;
-	}
-
-	// Metodos de acesso
+    public String getMedicoSeparadoPorPontoEVirgula() {
+        return this.codigo + ";" + getNome() + ";" + getTelefone();
+    }
 
 }
