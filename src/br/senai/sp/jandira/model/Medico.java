@@ -4,15 +4,26 @@ import java.util.ArrayList;
 
 public class Medico extends Pessoa {
 
+    private static int contador = 100;
     private String crm;
     private ArrayList<Especialidade> especialidades;
     private Integer codigo;
-    private static int contador = 100;
-
+    
     public ArrayList<Especialidade> getEspecialidade() {
         return especialidades;
     }
 
+    public Medico() {
+        atualizarCodigo();
+    }
+    
+    public Medico(Integer codigo, String nome, String telefone) {
+        this.codigo = codigo;
+        super.getNome();
+        super.getTelefone();
+        this.contador = this.codigo;
+    }
+    
     public void setEspecialidade(ArrayList<Especialidade> especialidade) {
         this.especialidades = especialidade;
     }
@@ -29,10 +40,11 @@ public class Medico extends Pessoa {
         return contador;
     }
 
-//    private void atualizarCodigo() {
-//        contador++;
-//        this.codigo = contador;
-//    }
+    private void atualizarCodigo() {
+        contador++;
+        this.codigo = contador;
+    }
+    
     public Integer getCodigo() {
         return codigo;
     }

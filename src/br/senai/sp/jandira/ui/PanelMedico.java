@@ -28,6 +28,7 @@ public class PanelMedico extends javax.swing.JPanel {
 
         setBackground(java.awt.SystemColor.activeCaption);
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setToolTipText("");
         setPreferredSize(new java.awt.Dimension(740, 390));
         setLayout(null);
 
@@ -49,7 +50,7 @@ public class PanelMedico extends javax.swing.JPanel {
 
         buttonDeletarMedico.setBackground(new java.awt.Color(72, 135, 195));
         buttonDeletarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/excluir (1).png"))); // NOI18N
-        buttonDeletarMedico.setToolTipText("Deletar plano de saúde selecionado");
+        buttonDeletarMedico.setToolTipText("Deletar médico selecionado");
         buttonDeletarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeletarMedicoActionPerformed(evt);
@@ -60,7 +61,7 @@ public class PanelMedico extends javax.swing.JPanel {
 
         buttonEditarMedico.setBackground(new java.awt.Color(72, 135, 195));
         buttonEditarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/editar.png"))); // NOI18N
-        buttonEditarMedico.setToolTipText("Editar plano de saúde selecionado");
+        buttonEditarMedico.setToolTipText("Editar médico selecionado");
         buttonEditarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditarMedicoActionPerformed(evt);
@@ -71,7 +72,7 @@ public class PanelMedico extends javax.swing.JPanel {
 
         buttonAdicionarMedico.setBackground(new java.awt.Color(72, 135, 195));
         buttonAdicionarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/adicionar.png"))); // NOI18N
-        buttonAdicionarMedico.setToolTipText("Adicionar um novo plano de saúde");
+        buttonAdicionarMedico.setToolTipText("Adicionar um novo médico");
         buttonAdicionarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarMedicoActionPerformed(evt);
@@ -114,17 +115,32 @@ public class PanelMedico extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_buttonEditarMedicoActionPerformed
 
+    
+    
+    private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
+
+        DialogMedico dialogMedico = new DialogMedico(
+            null,
+            true,
+            TipoOperacao.ADICIONAR,
+            null);
+        dialogMedico.setVisible(true);
+
+        criarTabelaMedico();
+        
+    }//GEN-LAST:event_buttonAdicionarMedicoActionPerformed
+
     private void editar() {
         
-//        Medico medico = MedicoDAO.getMedico(getCodigo());
-//        
-//        DialogPlanosDeSaude dialogPlanosDeSaude = new DialogPlanosDeSaude(
-//                null,
-//                true,
-//                TipoOperacao.EDITAR,
-//                medico);
-//        
-//        dialogPlanosDeSaude.setVisible(true);
+        Medico medico = MedicoDAO.getMedico(getCodigo());
+        
+        DialogMedico dialogMedico = new DialogMedico(
+                null,
+                true,
+                TipoOperacao.EDITAR,
+                medico);
+        
+        dialogMedico.setVisible(true);
         
         criarTabelaMedico();
         
@@ -134,8 +150,8 @@ public class PanelMedico extends javax.swing.JPanel {
 
         int resposta = JOptionPane.showConfirmDialog(
                 this,
-                "Você confirma a exclusão do Plano de Saúde selecionado?",
-                "Plano de Saúde",
+                "Você confirma a exclusão do Médico selecionado?",
+                "Médico",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
 
@@ -148,19 +164,6 @@ public class PanelMedico extends javax.swing.JPanel {
 
     }
     
-    private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
-
-        DialogPlanosDeSaude dialogPlanoDeSaude = new DialogPlanosDeSaude(
-            null,
-            true,
-            TipoOperacao.ADICIONAR,
-            null);
-        dialogPlanoDeSaude.setVisible(true);
-
-        criarTabelaMedico();
-        
-    }//GEN-LAST:event_buttonAdicionarMedicoActionPerformed
-
     private Integer getCodigo(){
         String codigoStr = tableMedicos.getValueAt(linha, 0).toString();
         return Integer.valueOf(codigoStr);
