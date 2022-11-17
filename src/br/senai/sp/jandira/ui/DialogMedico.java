@@ -317,6 +317,7 @@ public class DialogMedico extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonCancelar2ActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;

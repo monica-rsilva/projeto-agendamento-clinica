@@ -19,6 +19,11 @@ public class EspecialidadeDAO {
 
     private Especialidade especialidade;
     private static ArrayList<Especialidade> especialidadeList = new ArrayList<>();
+    
+    public ArrayList<Especialidade> getEspecialidade() {
+        return especialidadeList;
+    }
+    
     private static final String ARQUIVO = "C:\\Users\\22282167\\java\\especialidade.txt";
     private static final String ARQUIVO_TEMP = "C:\\Users\\22282167\\java\\especialidade_temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
