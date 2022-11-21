@@ -32,6 +32,7 @@ public class PanelMedico extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(740, 390));
         setLayout(null);
 
+        tableMedicos.setForeground(new java.awt.Color(0, 0, 255));
         tableMedicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -43,6 +44,7 @@ public class PanelMedico extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableMedicos.setToolTipText("");
         jScrollPane1.setViewportView(tableMedicos);
 
         add(jScrollPane1);

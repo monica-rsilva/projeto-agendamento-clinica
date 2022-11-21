@@ -49,6 +49,7 @@ public class MedicoDAO {
                     "Ocorreu um erro ao gravar.\n\nEntre em contato com o suporte",
                     "Erro ao gravar",
                     JOptionPane.ERROR_MESSAGE);
+//            ex.printStackTrace();
         }
     }
         
@@ -99,6 +100,7 @@ public class MedicoDAO {
                     "Ocorreu um erro ao criar o arquivo",
                     "Erro",
                     JOptionPane.ERROR_MESSAGE);
+//            ex.getStackTrace();
         }
     }
 
@@ -154,6 +156,7 @@ public class MedicoDAO {
                     "Ocorreu um erro ao abrir o arquivo",
                     "Erro de leitura",
                     JOptionPane.ERROR_MESSAGE);
+//            ex.printStackTrace();
         }
     }
 
@@ -175,3 +178,9 @@ public class MedicoDAO {
     }
 
 }
+
+//criar array
+//criar listmodel
+
+
+

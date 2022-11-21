@@ -17,6 +17,12 @@ public class Medico extends Pessoa {
         atualizarCodigo();
     }
     
+     public Medico(String nome, String telefone) {
+        super.getNome();
+        super.getTelefone();
+        atualizarCodigo();
+    }
+    
     public Medico(Integer codigo, String nome, String telefone) {
         this.codigo = codigo;
         super.getNome();
