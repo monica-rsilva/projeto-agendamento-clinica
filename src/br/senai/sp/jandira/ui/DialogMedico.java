@@ -18,7 +18,10 @@ public class DialogMedico extends javax.swing.JDialog {
     private Medico medico;
     
       private DefaultListModel listaTodosModel = new DefaultListModel<>();
-     
+      ArrayList<String> espStr = new ArrayList<>();
+      
+      private DefaultListModel<String> selecionadosModel = new DefaultListModel<>();
+      private ArrayList<String> selecionados = new ArrayList<>();
   
     public DialogMedico(java.awt.Frame parent, 
             boolean modal, 
@@ -51,12 +54,12 @@ public class DialogMedico extends javax.swing.JDialog {
     
     private void carregarEspecialidades(){
         
-        listaTodosModel.addAll(EspecialidadeDAO.listarTodos());
+        for(Especialidade e : EspecialidadeDAO.listarTodos()) {
+            espStr.add(e.getNome());
+        }
+        
+        listaTodosModel.addAll(espStr);
         listTodasEspecialidades.setModel(listaTodosModel);
-        
-        
-        
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -258,7 +261,17 @@ public class DialogMedico extends javax.swing.JDialog {
     }//GEN-LAST:event_textCRMActionPerformed
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-//        List<Especialidade> todos = jListTodos.getSelectedValuesList();
+      
+        List<String> es = listTodasEspecialidades.getSelectedValuesList();
+        
+        for (String e : es) {
+            selecionados.add(e);
+        }
+        
+        selecionadosModel.clear();
+        selecionadosModel.addAll(selecionados);
+        listEspecialidadesDoMedico.setModel(selecionadosModel);
+        
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
@@ -345,7 +358,14 @@ public class DialogMedico extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonCancelar1ActionPerformed
 
     private void buttonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverActionPerformed
-      
+
+        List<String> es = listTodasEspecialidades.getSelectedValuesList();
+        
+        for (String e : es) {
+            selecionados.remove(e);
+        }
+
+        selecionadosModel.clear();        
     }//GEN-LAST:event_buttonRemoverActionPerformed
 
     private void textNomeDoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeDoMedicoActionPerformed

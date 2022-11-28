@@ -169,7 +169,7 @@ public class MedicoDAO extends Pessoa{
         for (Medico m : medicoList) {
             dados[i][0] = m.getCodigo();
             dados[i][1] = m.getNome();
-            dados[i][2] = m.getNome();
+            dados[i][2] = m.getTelefone();
             i++;
         }
 

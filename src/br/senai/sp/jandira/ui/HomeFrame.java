@@ -79,6 +79,11 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonSair.setBackground(java.awt.SystemColor.activeCaption);
         buttonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/sair (1).png"))); // NOI18N
         buttonSair.setToolTipText("Sair");
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSairActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonSair);
         buttonSair.setBounds(660, 70, 90, 50);
         buttonSair.getAccessibleContext().setAccessibleDescription("");
@@ -229,6 +234,10 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonMedicos.setBackground(java.awt.SystemColor.activeCaption);
         
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
+
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+       dispose();
+    }//GEN-LAST:event_buttonSairActionPerformed
 
     
     
