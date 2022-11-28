@@ -11,6 +11,7 @@ public class PanelMedico extends javax.swing.JPanel {
     int linha;
 
     public PanelMedico() {
+        
         initComponents();
         criarTabelaMedico();
     }

@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Medico;
+import br.senai.sp.jandira.model.Pessoa;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class MedicoDAO {
+public class MedicoDAO extends Pessoa{
 
     private Medico medico;
     private static ArrayList<Medico> medicoList = new ArrayList<>();
@@ -21,7 +22,7 @@ public class MedicoDAO {
     private static final String ARQUIVO_TEMP = "C:\\Users\\22282167\\java\\medico_temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
     private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
-    
+
     public MedicoDAO(Medico medico) {
         this.medicoList.add(medico);
     }
@@ -32,7 +33,7 @@ public class MedicoDAO {
 
     public static void gravar(Medico medico) {
         medicoList.add(medico);
-        
+
         try {
             //Gravar o Médico no arquivo texto
             BufferedWriter bw = Files.newBufferedWriter(PATH,
@@ -52,7 +53,7 @@ public class MedicoDAO {
 //            ex.printStackTrace();
         }
     }
-        
+
     public static boolean excluir(Integer codigo) {
         for (Medico m : medicoList) {
             if (m.getCodigo().equals(codigo)) {
@@ -60,14 +61,14 @@ public class MedicoDAO {
                 break;
             }
         }
-        
+
         atualizarArquivo();
-        
+
         return false;
     }
-    
-    private static void atualizarArquivo(){
-        
+
+    private static void atualizarArquivo() {
+
         File arquivoAtual = new File(ARQUIVO);
         File arquivoTemp = new File(ARQUIVO_TEMP);
 
@@ -79,7 +80,7 @@ public class MedicoDAO {
                     PATH_TEMP,
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
-            
+
 //          Iterar na lista para adicionar os planos no arquivo temporário
             for (Medico m : medicoList) {
                 bwTemp.write(m.getMedicoSeparadoPorPontoEVirgula());
@@ -95,11 +96,12 @@ public class MedicoDAO {
             arquivoTemp.renameTo(arquivoAtual);
 
         } catch (IOException ex) {
-            JOptionPane.showConfirmDialog(
-                    null,
-                    "Ocorreu um erro ao criar o arquivo",
-                    "Erro",
+            JOptionPane.showMessageDialog(
+                    null, 
+                    "Ocorreu um erro ao criar o arquivo", 
+                    "Erro", 
                     JOptionPane.ERROR_MESSAGE);
+                    
 //            ex.getStackTrace();
         }
     }
@@ -122,11 +124,11 @@ public class MedicoDAO {
         }
         atualizarArquivo();
     }
-    
+
     public static ArrayList<Medico> listarTodos() {
         return medicoList;
     }
-    
+
     public static void getListaMedicos() {
 
         try {
@@ -139,7 +141,7 @@ public class MedicoDAO {
             while (linha != null && !linha.isEmpty()) {
                 String[] linhaVetor = linha.split(";");
                 Medico novoMedico = new Medico(
-                        Integer.valueOf(linhaVetor[0]),
+                  Integer.valueOf(linhaVetor[0]),
                         linhaVetor[1],
                         linhaVetor[2]);
 
@@ -167,7 +169,7 @@ public class MedicoDAO {
         for (Medico m : medicoList) {
             dados[i][0] = m.getCodigo();
             dados[i][1] = m.getNome();
-            dados[i][2] = m.getTelefone();
+            dados[i][2] = m.getNome();
             i++;
         }
 
@@ -181,6 +183,4 @@ public class MedicoDAO {
 
 //criar array
 //criar listmodel
-
-
 

@@ -18,15 +18,15 @@ public class Medico extends Pessoa {
     }
     
      public Medico(String nome, String telefone) {
-        super.getNome();
-        super.getTelefone();
+        getNome();
+        getTelefone();
         atualizarCodigo();
     }
     
     public Medico(Integer codigo, String nome, String telefone) {
         this.codigo = codigo;
-        super.getNome();
-        super.getTelefone();
+        super.setNome(nome);
+        super.setTelefone(telefone);
         this.contador = this.codigo;
     }
     
@@ -56,7 +56,7 @@ public class Medico extends Pessoa {
     }
 
     public String getMedicoSeparadoPorPontoEVirgula() {
-        return this.codigo + ";" + getNome() + ";" + getTelefone();
+        return this.codigo + ";" + super.getNome() + ";" + super.getTelefone();
     }
 
 }

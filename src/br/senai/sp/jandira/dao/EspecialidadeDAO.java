@@ -159,6 +159,7 @@ public class EspecialidadeDAO {
                     "Erro ao ler o arquivo",
                     JOptionPane.ERROR_MESSAGE);
         }
+        
     }
 
     public static DefaultTableModel getTableModel() {

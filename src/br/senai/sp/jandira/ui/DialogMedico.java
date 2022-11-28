@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadeDAO;
+import static br.senai.sp.jandira.dao.EspecialidadeDAO.listarTodos;
 import br.senai.sp.jandira.dao.MedicoDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.TipoOperacao;
@@ -16,11 +17,9 @@ public class DialogMedico extends javax.swing.JDialog {
     private TipoOperacao tipoOperacao;
     private Medico medico;
     
-    private DefaultListModel<Especialidade> listTodosModel = new DefaultListModel<>();
-    private DefaultListModel<Especialidade> especialidadesSelecionadas = new DefaultListModel<>();
-    private ArrayList<Especialidade> selecionados = new ArrayList<>();
-    
-    
+      private DefaultListModel listaTodosModel = new DefaultListModel<>();
+     
+  
     public DialogMedico(java.awt.Frame parent, 
             boolean modal, 
             TipoOperacao tipoOperacao, 
@@ -37,18 +36,27 @@ public class DialogMedico extends javax.swing.JDialog {
         if (tipoOperacao == TipoOperacao.EDITAR) {
                 preencherFormulario();
         }
+        
+        carregarEspecialidades();
     }
-    
-    
+   
     private void preencherFormulario(){
         labelTitulo.setText("Médico - " + tipoOperacao);
         labelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/medico.png")));
         textCodigo.setText(medico.getCodigo().toString());
         textNomeDoMedico.setText(medico.getNome());
-        textTelefone.setText(medico.getTelefone());
+        textTelefone.setText(medico.getTelefone());        
         
-        listTodosModel.addAll(EspecialidadeDAO.listarTodos());
-//        listTodasEspecialidades.setModel(listTodosModel);
+    }
+    
+    private void carregarEspecialidades(){
+        
+        listaTodosModel.addAll(EspecialidadeDAO.listarTodos());
+        listTodasEspecialidades.setModel(listaTodosModel);
+        
+        
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -66,7 +74,7 @@ public class DialogMedico extends javax.swing.JDialog {
         textTelefone = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         textCRM = new javax.swing.JTextField();
-        buttonCancelar = new javax.swing.JButton();
+        buttonAdd = new javax.swing.JButton();
         buttonSalvar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         textDataNascimento = new javax.swing.JTextField();
@@ -77,7 +85,7 @@ public class DialogMedico extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         listTodasEspecialidades = new javax.swing.JList<>();
         buttonCancelar1 = new javax.swing.JButton();
-        buttonCancelar2 = new javax.swing.JButton();
+        buttonRemover = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         listEspecialidadesDoMedico = new javax.swing.JList<>();
 
@@ -141,16 +149,16 @@ public class DialogMedico extends javax.swing.JDialog {
         detalhesDoMedico.add(textCRM);
         textCRM.setBounds(540, 80, 120, 40);
 
-        buttonCancelar.setBackground(java.awt.SystemColor.activeCaption);
-        buttonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/anterioor.png"))); // NOI18N
-        buttonCancelar.setToolTipText("Cancelar cadastro");
-        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        buttonAdd.setBackground(java.awt.SystemColor.activeCaption);
+        buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/proximo.png"))); // NOI18N
+        buttonAdd.setToolTipText("Cancelar cadastro");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelarActionPerformed(evt);
+                buttonAddActionPerformed(evt);
             }
         });
-        detalhesDoMedico.add(buttonCancelar);
-        buttonCancelar.setBounds(300, 310, 90, 50);
+        detalhesDoMedico.add(buttonAdd);
+        buttonAdd.setBounds(300, 240, 90, 50);
 
         buttonSalvar.setBackground(java.awt.SystemColor.activeCaption);
         buttonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/salve- (1).png"))); // NOI18N
@@ -161,7 +169,7 @@ public class DialogMedico extends javax.swing.JDialog {
             }
         });
         detalhesDoMedico.add(buttonSalvar);
-        buttonSalvar.setBounds(590, 490, 90, 50);
+        buttonSalvar.setBounds(590, 480, 90, 50);
 
         jLabel7.setText("CRM");
         detalhesDoMedico.add(jLabel7);
@@ -212,18 +220,18 @@ public class DialogMedico extends javax.swing.JDialog {
             }
         });
         detalhesDoMedico.add(buttonCancelar1);
-        buttonCancelar1.setBounds(480, 490, 90, 50);
+        buttonCancelar1.setBounds(480, 480, 90, 50);
 
-        buttonCancelar2.setBackground(java.awt.SystemColor.activeCaption);
-        buttonCancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/proximo.png"))); // NOI18N
-        buttonCancelar2.setToolTipText("Cancelar cadastro");
-        buttonCancelar2.addActionListener(new java.awt.event.ActionListener() {
+        buttonRemover.setBackground(java.awt.SystemColor.activeCaption);
+        buttonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/anterior.png"))); // NOI18N
+        buttonRemover.setToolTipText("Cancelar cadastro");
+        buttonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelar2ActionPerformed(evt);
+                buttonRemoverActionPerformed(evt);
             }
         });
-        detalhesDoMedico.add(buttonCancelar2);
-        buttonCancelar2.setBounds(300, 230, 90, 50);
+        detalhesDoMedico.add(buttonRemover);
+        buttonRemover.setBounds(300, 310, 90, 50);
 
         listEspecialidadesDoMedico.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -236,9 +244,9 @@ public class DialogMedico extends javax.swing.JDialog {
         jScrollPane3.setBounds(430, 210, 200, 260);
 
         getContentPane().add(detalhesDoMedico);
-        detalhesDoMedico.setBounds(0, 60, 700, 560);
+        detalhesDoMedico.setBounds(0, 60, 700, 570);
 
-        setBounds(0, 0, 713, 625);
+        setBounds(0, 0, 713, 636);
     }// </editor-fold>//GEN-END:initComponents
 
     private void textCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCodigoActionPerformed
@@ -249,9 +257,9 @@ public class DialogMedico extends javax.swing.JDialog {
 
     }//GEN-LAST:event_textCRMActionPerformed
 
-    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        dispose();
-    }//GEN-LAST:event_buttonCancelarActionPerformed
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+//        List<Especialidade> todos = jListTodos.getSelectedValuesList();
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
 
@@ -336,9 +344,9 @@ public class DialogMedico extends javax.swing.JDialog {
        
     }//GEN-LAST:event_buttonCancelar1ActionPerformed
 
-    private void buttonCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelar2ActionPerformed
+    private void buttonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverActionPerformed
       
-    }//GEN-LAST:event_buttonCancelar2ActionPerformed
+    }//GEN-LAST:event_buttonRemoverActionPerformed
 
     private void textNomeDoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeDoMedicoActionPerformed
        
@@ -347,9 +355,9 @@ public class DialogMedico extends javax.swing.JDialog {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonCancelar1;
-    private javax.swing.JButton buttonCancelar2;
+    private javax.swing.JButton buttonRemover;
     private javax.swing.JButton buttonSalvar;
     private javax.swing.JPanel detalhesDoMedico;
     private javax.swing.JLabel jLabel3;
