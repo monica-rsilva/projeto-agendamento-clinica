@@ -11,55 +11,64 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-
 public class DialogMedico extends javax.swing.JDialog {
-    
+
     private TipoOperacao tipoOperacao;
     private Medico medico;
-    
-      private DefaultListModel listaTodosModel = new DefaultListModel<>();
-      ArrayList<String> espStr = new ArrayList<>();
-      
-      private DefaultListModel<String> selecionadosModel = new DefaultListModel<>();
-      private ArrayList<String> selecionados = new ArrayList<>();
-  
-    public DialogMedico(java.awt.Frame parent, 
-            boolean modal, 
-            TipoOperacao tipoOperacao, 
+
+    private DefaultListModel listaTodosModel = new DefaultListModel<>();
+    ArrayList<String> espStr = new ArrayList<>();
+
+    private DefaultListModel<String> selecionadosModel = new DefaultListModel<>();
+    ArrayList<String> selecionados = new ArrayList<>();
+
+    public DialogMedico(java.awt.Frame parent,
+            boolean modal,
+            TipoOperacao tipoOperacao,
             Medico medico) {
-        
-        
-        
+
         super(parent, modal);
         initComponents();
         this.tipoOperacao = tipoOperacao;
         this.medico = medico;
-        
+
         //Preencher os campos, caso o tipo de operação for EDITAR
         if (tipoOperacao == TipoOperacao.EDITAR) {
-                preencherFormulario();
+            preencherFormulario();
         }
-        
+
         carregarEspecialidades();
+        carregarEspecialidadesDoMedico();
     }
-   
-    private void preencherFormulario(){
+
+    private void preencherFormulario() {
         labelTitulo.setText("Médico - " + tipoOperacao);
         labelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/medico.png")));
         textCodigo.setText(medico.getCodigo().toString());
         textNomeDoMedico.setText(medico.getNome());
-        textTelefone.setText(medico.getTelefone());        
-        
+        textTelefone.setText(medico.getTelefone());
+
     }
-    
-    private void carregarEspecialidades(){
-        
-        for(Especialidade e : EspecialidadeDAO.listarTodos()) {
+
+    private void carregarEspecialidades() {
+
+        for (Especialidade e : EspecialidadeDAO.listarTodos()) {
             espStr.add(e.getNome());
         }
-        
+
         listaTodosModel.addAll(espStr);
         listTodasEspecialidades.setModel(listaTodosModel);
+    }
+    
+    private void carregarEspecialidadesDoMedico(){
+        
+        for (Especialidade e : EspecialidadeDAO.listarEspMedico()) {
+            selecionados.add(e.getNome());
+        }
+        
+        selecionadosModel.addAll(selecionados);
+        listEspecialidadesDoMedico.setModel(selecionadosModel);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -261,45 +270,45 @@ public class DialogMedico extends javax.swing.JDialog {
     }//GEN-LAST:event_textCRMActionPerformed
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-      
+
         List<String> es = listTodasEspecialidades.getSelectedValuesList();
-        
+
         for (String e : es) {
             selecionados.add(e);
         }
-        
+
         selecionadosModel.clear();
         selecionadosModel.addAll(selecionados);
         listEspecialidadesDoMedico.setModel(selecionadosModel);
-        
+
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
 
         if (tipoOperacao == TipoOperacao.ADICIONAR) {
-               gravar();
+            gravar();
         } else {
-               atualizar();
+            atualizar();
         }
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     private void atualizar() {
         medico.setNome(textNomeDoMedico.getText());
         medico.setTelefone(textTelefone.getText());
-        
-        if(validarCadastro()){
+
+        if (validarCadastro()) {
             MedicoDAO.atualizar(medico);
-            
+
             JOptionPane.showMessageDialog(
-                null, 
-                "Médico atualizado com sucesso!", 
-                "Médico", 
+                    null,
+                    "Médico atualizado com sucesso!",
+                    "Médico",
                     JOptionPane.INFORMATION_MESSAGE);
-        
-        dispose();
-        } 
+
+            dispose();
+        }
     }
-    
+
     private void gravar() {
         //        Criar um objeto plano de saúde 
         Medico medico = new Medico();
@@ -318,11 +327,11 @@ public class DialogMedico extends javax.swing.JDialog {
             dispose();
         }
     }
-    
+
     private boolean validarCadastro() {
-        
+
         if (textNomeDoMedico.getText().isEmpty()) {
-            
+
             JOptionPane.showMessageDialog(
                     this,
                     "Por favor, preencha o campo Nome do Médico!",
@@ -333,9 +342,9 @@ public class DialogMedico extends javax.swing.JDialog {
 
             return false;
         }
-        
+
         if (textTelefone.getText().isEmpty()) {
-            
+
             JOptionPane.showMessageDialog(
                     this,
                     "Por favor, preencha o campo Telefone!",
@@ -348,31 +357,30 @@ public class DialogMedico extends javax.swing.JDialog {
         }
         return true;
     }
-    
+
     private void textDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDataNascimentoActionPerformed
-       
+
     }//GEN-LAST:event_textDataNascimentoActionPerformed
 
     private void buttonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelar1ActionPerformed
-       
+
     }//GEN-LAST:event_buttonCancelar1ActionPerformed
 
     private void buttonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverActionPerformed
 
         List<String> es = listTodasEspecialidades.getSelectedValuesList();
-        
+
         for (String e : es) {
             selecionados.remove(e);
         }
 
-        selecionadosModel.clear();        
+        selecionadosModel.clear();
     }//GEN-LAST:event_buttonRemoverActionPerformed
 
     private void textNomeDoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeDoMedicoActionPerformed
-       
+
     }//GEN-LAST:event_textNomeDoMedicoActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;

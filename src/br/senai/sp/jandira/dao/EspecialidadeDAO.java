@@ -20,11 +20,17 @@ public class EspecialidadeDAO {
     private Especialidade especialidade;
     private static ArrayList<Especialidade> especialidadeList = new ArrayList<>();
     
+    private Especialidade especialidadeMedico;
+    private static ArrayList<Especialidade> especialidadeListMedico = new ArrayList<>();
+    
     
     private static final String ARQUIVO = "C:\\Users\\22282167\\java\\especialidade.txt";
     private static final String ARQUIVO_TEMP = "C:\\Users\\22282167\\java\\especialidade_temp.txt";
     private static final Path PATH = Paths.get(ARQUIVO);
     private static final Path PATH_TEMP = Paths.get(ARQUIVO_TEMP);
+    
+//    private static final String ARQUIVOMEDICO = "C:\\Users\\22282167\\java\\especialidadeMedico.txt";
+//    private static final Path PATHMEDICO = Paths.get(ARQUIVOMEDICO);
 
     public EspecialidadeDAO(Especialidade especialidade) {
         this.especialidadeList.add(especialidade);
@@ -56,6 +62,29 @@ public class EspecialidadeDAO {
         }
 
     }
+    
+//    public static void gravarEspMedico(Especialidade especialidadeMedico) {
+//        especialidadeListMedico.add(especialidadeMedico);
+//
+//        try {
+//            //Gravar o plano de saúde no arquivo texto
+//            BufferedWriter bw = Files.newBufferedWriter(PATHMEDICO,
+//                    StandardOpenOption.APPEND,
+//                    StandardOpenOption.WRITE);
+//
+//            bw.write(especialidadeMedico.getEspecialidadeSeparadoPorPontoEVirgula());
+//            bw.newLine();
+//            bw.close();
+//
+//        } catch (IOException ex) {
+//            JOptionPane.showMessageDialog(
+//                    null,
+//                    "Ocorreu um erro ao gravar.\n\nEntre em contato com o suporte",
+//                    "Erro ao gravar",
+//                    JOptionPane.ERROR_MESSAGE);
+//        }
+//
+//    }
 
     public static boolean excluir(Integer codigo) {
 
@@ -127,6 +156,10 @@ public class EspecialidadeDAO {
 
     public static ArrayList<Especialidade> listarTodos() {
         return especialidadeList;
+    }
+    
+    public static ArrayList<Especialidade> listarEspMedico(){
+        return especialidadeListMedico;
     }
     
     public static void getListaEspecialidade() {

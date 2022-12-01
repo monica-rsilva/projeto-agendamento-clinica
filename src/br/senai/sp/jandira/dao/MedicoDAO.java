@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Medico;
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Pessoa;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -132,19 +133,33 @@ public class MedicoDAO extends Pessoa{
     public static void getListaMedicos() {
 
         try {
+            
             // Abrir o arquivo para leitura - Leitor
 
             BufferedReader br = Files.newBufferedReader(PATH);
 
             String linha = br.readLine();
-
+            
             while (linha != null && !linha.isEmpty()) {
                 String[] linhaVetor = linha.split(";");
+                
+            ArrayList<Especialidade> espMedico = new ArrayList<>();
+            int i = 0;
+            
+            while (linhaVetor.length > i + 6) {
+                espMedico.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(linhaVetor[6+i])));
+                    i++;
+            }
+            
                 Medico novoMedico = new Medico(
-                  Integer.valueOf(linhaVetor[0]),
+                        Integer.valueOf(linhaVetor[0]),
                         linhaVetor[1],
-                        linhaVetor[2]);
-
+                        linhaVetor[2],
+                        linhaVetor[3],
+                        linhaVetor[4],
+                        linhaVetor[5],
+                        espMedico);
+             
                 medicoList.add(novoMedico);
 
                 linha = br.readLine();
@@ -170,6 +185,11 @@ public class MedicoDAO extends Pessoa{
             dados[i][0] = m.getCodigo();
             dados[i][1] = m.getNome();
             dados[i][2] = m.getTelefone();
+            
+//            dados[i][2] = m.getCrm();
+//            dados[i][3] = m.getTelefone();
+//            dados[i][4] = m.getEmail();
+//            dados[i][5] = m.getDataNascimento();
             i++;
         }
 

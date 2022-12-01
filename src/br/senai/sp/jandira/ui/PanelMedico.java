@@ -7,16 +7,15 @@ import br.senai.sp.jandira.model.TipoOperacao;
 import javax.swing.JTable;
 
 public class PanelMedico extends javax.swing.JPanel {
-    
+
     int linha;
 
     public PanelMedico() {
-        
+
         initComponents();
         criarTabelaMedico();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,10 +95,10 @@ public class PanelMedico extends javax.swing.JPanel {
             excluir();
         } else {
             JOptionPane.showMessageDialog(
-                this,
-                "Por favor, selecione o Médico que você deseja excluir!",
-                "Médico",
-                JOptionPane.ERROR_MESSAGE);
+                    this,
+                    "Por favor, selecione o Médico que você deseja excluir!",
+                    "Médico",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonDeletarMedicoActionPerformed
 
@@ -111,44 +110,43 @@ public class PanelMedico extends javax.swing.JPanel {
             editar();
         } else {
             JOptionPane.showMessageDialog(
-                this,
-                "Por favor, selecione um Médico para editar",
-                "Médico",
-                JOptionPane.WARNING_MESSAGE);
+                    this,
+                    "Por favor, selecione um Médico para editar",
+                    "Médico",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_buttonEditarMedicoActionPerformed
 
-    
-    
+
     private void buttonAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarMedicoActionPerformed
 
         DialogMedico dialogMedico = new DialogMedico(
-            null,
-            true,
-            TipoOperacao.ADICIONAR,
-            null);
+                null,
+                true,
+                TipoOperacao.ADICIONAR,
+                null);
         dialogMedico.setVisible(true);
 
         criarTabelaMedico();
-        
+
     }//GEN-LAST:event_buttonAdicionarMedicoActionPerformed
 
     private void editar() {
-        
+
         Medico medico = MedicoDAO.getMedico(getCodigo());
-        
+
         DialogMedico dialogMedico = new DialogMedico(
                 null,
                 true,
                 TipoOperacao.EDITAR,
                 medico);
-        
+
         dialogMedico.setVisible(true);
-        
+
         criarTabelaMedico();
-        
+
     }
-    
+
     private void excluir() {
 
         int resposta = JOptionPane.showConfirmDialog(
@@ -166,12 +164,12 @@ public class PanelMedico extends javax.swing.JPanel {
         }
 
     }
-    
-    private Integer getCodigo(){
+
+    private Integer getCodigo() {
         String codigoStr = tableMedicos.getValueAt(linha, 0).toString();
         return Integer.valueOf(codigoStr);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdicionarMedico;
     private javax.swing.JButton buttonDeletarMedico;
@@ -179,7 +177,7 @@ public class PanelMedico extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableMedicos;
     // End of variables declaration//GEN-END:variables
-        
+
     private void criarTabelaMedico() {
 
         tableMedicos.setModel(MedicoDAO.getTableModel());
@@ -198,5 +196,3 @@ public class PanelMedico extends javax.swing.JPanel {
         tableMedicos.setDefaultEditor(Object.class, null);
     }
 }
-
-
