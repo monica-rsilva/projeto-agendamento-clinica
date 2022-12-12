@@ -37,8 +37,8 @@ public class Medico extends Pessoa {
         super.setTelefone(telefone);
         super.setEmail(email);
         super.setDataNascimento(dataNascimento);
-        this.setEspecialidade(especialidades);
-        this.contador = this.codigo;
+        this.especialidades = especialidades;
+        this.contador =codigo;
     }
     
     public void setEspecialidade(ArrayList<Especialidade> especialidade) {
@@ -67,7 +67,7 @@ public class Medico extends Pessoa {
     }
 
     public String getMedicoSeparadoPorPontoEVirgula() {
-        return this.codigo + ";" + super.getNome() + ";" + super.getTelefone();
+        return this.codigo + ";" + super.getNome() + ";" + this.getCrm() + ";" + super.getTelefone() + ";" + super.getEmail() + ";" + super.getDataNascimento() + this.getEspecialidade();
     }
 
 }

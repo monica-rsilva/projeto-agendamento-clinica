@@ -3,9 +3,7 @@ package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-
-
+//import java.time.format.DateTimeParseException;
 
 
 public class Pessoa {
@@ -42,11 +40,12 @@ public class Pessoa {
     }
 
     public String getDataNascimento() {
-        return dataNascimento.format(DateTimeFormatter.ofPattern("dd/mm/yyyy"));
+        return dataNascimento.format(formatter);
     }
 
     public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/mm/yyyy"));
+        this.dataNascimento = LocalDate.parse(dataNascimento, formatter);
     }
     
 }
+

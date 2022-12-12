@@ -47,7 +47,10 @@ public class DialogMedico extends javax.swing.JDialog {
         textCodigo.setText(medico.getCodigo().toString());
         textNomeDoMedico.setText(medico.getNome());
         textTelefone.setText(medico.getTelefone());
-
+        textCRM.setText(medico.getCrm());
+        textEmail.setText(medico.getEmail());
+        textDataNascimento.setText(medico.getDataNascimento());
+        
     }
 
     private void carregarEspecialidades() {
@@ -63,7 +66,7 @@ public class DialogMedico extends javax.swing.JDialog {
     private void carregarEspecialidadesDoMedico(){
         
         for (Especialidade e : EspecialidadeDAO.listarEspMedico()) {
-            selecionados.add(e.getNome());
+            selecionados.add(e.getCodigo().toString());
         }
         
         selecionadosModel.addAll(selecionados);
@@ -295,6 +298,9 @@ public class DialogMedico extends javax.swing.JDialog {
     private void atualizar() {
         medico.setNome(textNomeDoMedico.getText());
         medico.setTelefone(textTelefone.getText());
+        medico.setCrm(textCRM.getText());
+        medico.setEmail(textEmail.getText());
+        medico.setDataNascimento(textDataNascimento.getText());
 
         if (validarCadastro()) {
             MedicoDAO.atualizar(medico);
@@ -310,10 +316,14 @@ public class DialogMedico extends javax.swing.JDialog {
     }
 
     private void gravar() {
-        //        Criar um objeto plano de saúde 
+        //        Criar um objeto Médico
         Medico medico = new Medico();
         medico.setNome(textNomeDoMedico.getText());
         medico.setTelefone(textTelefone.getText());
+        medico.setCrm(textCRM.getText());
+        medico.setEmail(textEmail.getText());
+        medico.setDataNascimento(textDataNascimento.getText());
+        
 
         if (validarCadastro()) {
             MedicoDAO.gravar(medico);

@@ -190,7 +190,7 @@ public class MedicoDAO extends Pessoa{
 //            dados[i][3] = m.getTelefone();
 //            dados[i][4] = m.getEmail();
 //            dados[i][5] = m.getDataNascimento();
-            i++;
+//            i++;
         }
 
         String[] titulos = {"Código", "Nome", "Telefone"};
